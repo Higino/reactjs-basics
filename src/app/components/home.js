@@ -27,8 +27,18 @@ export class Home extends React.Component {
                 <p>In a new Component</p>
                 <p>Your name is {this.props.name}, your age is {this.state.age}</p>
                 <p>Your status is {this.props.status}, your age is {this.state.status}</p>
+                <hr/>
                 <button onClick={this.onMakeOlder.bind(this)} className="btn btn-primary">Make me Older</button>
+                <hr/>
+                <button className="btn btn-primary" onClick={this.props.greet}>Greet</button>
             </div>
         );
     }
 }
+
+// Props validation - Good practice
+Home.propTypes = {
+    name: React.PropTypes.string,
+    initialAge: React.PropTypes.number,
+    greet: React.PropTypes.func
+};

@@ -7,7 +7,7 @@ export class Home extends React.Component {
             // We should not assign props to a state unless it is an initialization value, which is this case.
             age: props.initialAge,
             status: 'Single', // A dummy state property to demonstrate that the setState function does not change its value
-            homeLink: "I Changed this Link"
+            homeLink: props.initialLinkName
         };
         setTimeout(() => {
             this.setState({
@@ -26,6 +26,12 @@ export class Home extends React.Component {
         this.props.changeLink(this.state.homeLink);
     }
 
+    onHandleChange(event) {
+        this.setState({
+            homeLink: event.target.value
+        });
+    }
+
     render() {
         return (
             <div>
@@ -37,6 +43,8 @@ export class Home extends React.Component {
                 <hr/>
                 <button className="btn btn-primary" onClick={this.props.greet}>Greet</button>
                 <hr/>
+                <input type="text" value={this.state.homeLink}
+                    onChange={(event) => this.onHandleChange(event)}/>
                 <button className="btn btn-primary" onClick={this.onChangeLink.bind(this)}>Change Header Link</button>
             </div>
         );
@@ -47,5 +55,6 @@ export class Home extends React.Component {
 Home.propTypes = {
     name: React.PropTypes.string,
     initialAge: React.PropTypes.number,
-    greet: React.PropTypes.func
+    greet: React.PropTypes.func,
+    initialLinkName: React.PropTypes.string
 };
